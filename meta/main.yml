@@ -6,7 +6,7 @@ galaxy_info:
   role_name: rhel
   namespace: thbe
   author: Thomas Bendler
-  description: This role deploy RHEL specific settings/ tools to a freshly installed machine
+  description: This role configures and deploys base settings on an RHEL instance or RHEL clone
   license: GPL-3.0-only
   min_ansible_version: "2.9"
   platforms:
