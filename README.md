@@ -1,6 +1,8 @@
 Ansible Role thbe-rhel
 ======================
 
+[![CI](https://github.com/thbe/ansible-role-rhel/actions/workflows/github-actions-ansible-lint.yml/badge.svg?event=push)](https://github.com/thbe/ansible-role-rhel/actions)
+
 This role configures and deploys base settings on an RHEL instance or RHEL clone.
 
 Requirements
