@@ -1,0 +1,24 @@
+---
+- name: Create base directory for Ansible
+  ansible.builtin.file:
+    path: "{{ role_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create directory for local DNF management
+  ansible.builtin.file:
+    path: "{{ role_directory }}/dnf"
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+
+- name: Create directory for local RPMs
+  ansible.builtin.file:
+    path: "{{ role_directory }}/rpms"
+    state: directory
+    owner: root
+    group: root
+    mode: 0750

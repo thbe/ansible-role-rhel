@@ -1,0 +1,68 @@
+---
+- name: Deploy DNF version lock
+  ansible.builtin.dnf:
+    name:
+      - python3-dnf-plugin-versionlock
+    state: present
+
+- name: Installation of specific RHEL kernel
+  ansible.builtin.dnf:
+    name: "kernel-{{ rhel_kernel_version }}"
+    state: present
+  when:
+    - rhel_kernel_version != "latest"
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Check if default kernel equals the locked version
+  ansible.builtin.command:
+    cmd: "grubby --default-kernel"
+  register: grubby_check_default_kernel
+  changed_when: grubby_check_default_kernel.stdout is not search(rhel_kernel_version)
+  when:
+    - rhel_kernel_version != "latest"
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Set default boot kernel
+  ansible.builtin.command:
+    cmd: "grubby --set-default /boot/vmlinuz-{{ rhel_kernel_version }}.x86_64"
+  register: grubby_set_default_kernel
+  changed_when: grubby_set_default_kernel.rc == 0
+  failed_when: grubby_set_default_kernel.rc != 0
+  when:
+    - rhel_kernel_version != "latest"
+    - grubby_check_default_kernel.stdout is not search(rhel_kernel_version)
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Lock dnf RHEL version
+  ansible.builtin.shell: 'echo {{ rhel_release_version }} > /etc/dnf/vars/releasever'
+  args:
+    creates: /etc/dnf/vars/releasever
+  when:
+    - rhel_release_version != "latest"
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8
+
+- name: Remove file DNF release lock for RHEL version latest
+  ansible.builtin.file:
+    path: /etc/dnf/vars/releasever
+    state: absent
+  when:
+    - rhel_release_version == "latest"
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8
+
+- name: Lock subscription-managers RHEL version
+  community.general.rhsm_release:
+    release: '{{ rhel_release_version }}'
+  when:
+    - rhel_release_version != "latest"
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8
+
+- name: Unlock subscription-managers RHEL version
+  community.general.rhsm_release:
+    release: null
+  when:
+    - rhel_release_version == "latest"
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8

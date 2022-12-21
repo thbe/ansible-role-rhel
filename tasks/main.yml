@@ -1,0 +1,70 @@
+---
+- name: Create base folder structure
+  ansible.builtin.import_tasks: folder.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy hostname configuration
+  ansible.builtin.import_tasks: hostname.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy network configuration
+  ansible.builtin.import_tasks: network.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Lock RHEL and/ or kernel version
+  ansible.builtin.import_tasks: version.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - (rhel_release_version != "latest") or
+      (rhel_kernel_version != "latest")
+
+- name: Activate base RHN subscriptions
+  ansible.builtin.import_tasks: subscription.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - rhn_organization_id != "unset"
+    - rhn_activation_key != "unset"
+    - rhn_pool_id != "unset"
+
+- name: Enable base repositories
+  ansible.builtin.import_tasks: repositories.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+
+- name: Deploy Ansible
+  ansible.builtin.import_tasks: ansible.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy RHEL base packages
+  ansible.builtin.import_tasks: packages.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy kernel dump service
+  ansible.builtin.import_tasks: kdump.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy kernel patch service
+  ansible.builtin.import_tasks: kpatch.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+
+- name: Deploy automatic security patch updates
+  ansible.builtin.import_tasks: update.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy Red Hat Insights
+  ansible.builtin.import_tasks: insight.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+
+- name: Deploy cockpit management service
+  ansible.builtin.import_tasks: cockpit.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"

@@ -1,0 +1,20 @@
+---
+# RHEL 8
+- name: Enable RHEL 8 repositories
+  community.general.rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  loop: "{{ rhel_repos_8 }}"
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+# RHEL 9
+- name: Enable RHEL 9 repositories
+  community.general.rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  loop: "{{ rhel_repos_9 }}"
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 9

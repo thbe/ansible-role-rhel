@@ -1,0 +1,27 @@
+---
+- name: Installation of RHEL packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rhel_packages_common }}"
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8
+
+- name: Installation of RHEL 8 packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rhel_packages_8 }}"
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Installation of RHN packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rhel_packages_rhn }}"
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int >= 8

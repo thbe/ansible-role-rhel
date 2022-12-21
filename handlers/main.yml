@@ -1,0 +1,9 @@
+---
+# handlers file for rhel
+- name: Restart cockpit
+  ansible.builtin.service:
+    name: cockpit.socket
+    state: restarted
+
+- name: Reload firewalld
+  ansible.builtin.command: firewall-cmd --reload

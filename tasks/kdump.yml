@@ -1,0 +1,13 @@
+---
+- name: Deploy kdump packages
+  ansible.builtin.dnf:
+    name:
+      - crash
+      - kexec-tools
+    state: present
+
+- name: Enable and start kdump service
+  ansible.builtin.service:
+    name: kdump.service
+    state: started
+    enabled: true

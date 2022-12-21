@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  collections:
+    - ansible.posix
+    - community.general
+  tasks:
+    - name: "Include thbe.common"
+      ansible.builtin.include_role:
+        name: "thbe.common"
+    - name: "Include thbe.rhel"
+      ansible.builtin.include_role:
+        name: "thbe.rhel"

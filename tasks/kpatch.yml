@@ -1,0 +1,13 @@
+---
+- name: Deploy kpatch packages
+  ansible.builtin.dnf:
+    name:
+      - kpatch
+      - kpatch-dnf
+    state: present
+
+- name: Enable and start kpatch service
+  ansible.builtin.service:
+    name: kpatch.service
+    state: started
+    enabled: true

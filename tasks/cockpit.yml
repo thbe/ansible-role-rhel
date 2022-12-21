@@ -1,0 +1,21 @@
+---
+- name: Deploy cockpit packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ cockpit_packages }}"
+
+- name: Enable and start cockpit service
+  ansible.builtin.service:
+    name: cockpit.socket
+    state: started
+    enabled: true
+
+- name: Enable cockpit on local firewall
+  ansible.posix.firewalld:
+    service: cockpit
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - ansible_facts['virtualization_type'] != "docker"

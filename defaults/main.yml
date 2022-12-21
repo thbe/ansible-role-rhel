@@ -1,0 +1,59 @@
+---
+# defaults file for rhel
+role_directory: /opt/ansible/rhel
+
+net_manage: false
+net_mtu: 1500
+net_connection_prefix: 'System '
+net_interface: 'eth0'
+
+net_packages:
+  - NetworkManager
+  - NetworkManager-libnm
+  - nm-connection-editor
+  - nmstate
+  - python3-libnmstate
+
+local_net_route_1: '{{ " ".join((net_route_1, net_gw)) }}'
+local_net_route_2: '{{ " ".join((net_route_2, net_gw)) }}'
+
+cockpit_packages:
+  - cockpit
+  - cockpit-ws
+  - cockpit-bridge
+  - cockpit-pcp
+  - cockpit-session-recording
+  - cockpit-system
+  - subscription-manager-cockpit.noarch
+
+rhn_organization_id: 'unset'
+rhn_activation_key: 'unset'
+rhn_pool_id: 'unset'
+
+rhel_release_version: 'latest'
+rhel_kernel_version: 'latest'
+
+rhel_repos_8:
+  - rhel-8-for-x86_64-baseos-rpms
+  - rhel-8-for-x86_64-appstream-rpms
+  - codeready-builder-for-rhel-8-x86_64-rpms
+
+rhel_repos_9:
+  - rhel-9-for-x86_64-baseos-rpms
+  - rhel-9-for-x86_64-appstream-rpms
+  - codeready-builder-for-rhel-9-x86_64-rpms
+
+rhel_packages_common:
+  - dnf-automatic
+  - dnf-data
+  - dnf-plugins-core
+  - dnf-utils
+  - rhel-system-roles
+
+rhel_packages_8:
+  - redhat-lsb-core
+  - system-storage-manager
+
+rhel_packages_rhn:
+  - rhc
+  - rhc-worker-playbook

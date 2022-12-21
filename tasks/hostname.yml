@@ -1,0 +1,7 @@
+---
+- name: Configure primary hostname
+  ansible.builtin.hostname:
+    name: '{{ net_hostname_primary }}'
+    use: systemd
+  when:
+    - net_hostname_primary is defined

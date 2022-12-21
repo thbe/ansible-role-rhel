@@ -1,0 +1,56 @@
+---
+- name: Install network manager libraries
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ net_packages }}"
+  when:
+    - net_manage|bool
+
+- name: Configure primary network (static)
+  community.general.nmcli:
+    conn_name: '{{ net_connection_prefix }}{{ net_interface }}'
+    ifname: '{{ net_interface }}'
+    type: 'ethernet'
+    mtu: '{{ net_mtu }}'
+    ip4: '{{ net_ip_primary }}'
+    gw4: '{{ net_gw }}'
+    dns4:
+      - '{{ net_dns_1 }}'
+      - '{{ net_dns_2 }}'
+    dns4_search: '{{ net_dns_search }}'
+    routes4:
+      - '{{ local_net_route_1 }}'
+      - '{{ local_net_route_2 }}'
+    state: present
+  when:
+    - net_manage|bool
+    - net_ip_primary is defined
+    - net_ip_secondary is not defined
+    - net_dns_1 is defined
+    - net_dns_2 is defined
+
+- name: Configure primary and secondary network (static)
+  community.general.nmcli:
+    conn_name: '{{ net_connection_prefix }}{{ net_interface }}'
+    ifname: '{{ net_interface }}'
+    type: 'ethernet'
+    mtu: '{{ net_mtu }}'
+    ip4:
+      - '{{ net_ip_primary }}'
+      - '{{ net_ip_secondary }}'
+    gw4: '{{ net_gw }}'
+    dns4:
+      - '{{ net_dns_1 }}'
+      - '{{ net_dns_2 }}'
+    dns4_search: '{{ net_dns_search }}'
+    routes4:
+      - '{{ local_net_route_1 }}'
+      - '{{ local_net_route_2 }}'
+    state: present
+  when:
+    - net_manage|bool
+    - net_ip_primary is defined
+    - net_ip_secondary is defined
+    - net_dns_1 is defined
+    - net_dns_2 is defined

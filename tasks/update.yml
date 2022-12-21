@@ -1,0 +1,30 @@
+---
+- name: Deploy dnf automatic update packages
+  ansible.builtin.dnf:
+    name:
+      - dnf-automatic
+    state: present
+
+- name: Configure automatic security updates
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/automatic.conf
+    regexp: 'upgrade_type'
+    line: upgrade_type = security
+
+- name: Configure automatic dnf downloads
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/automatic.conf
+    regexp: 'download_updates'
+    line: download_updates = yes
+
+- name: Configure automatic dnf updates
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/automatic.conf
+    regexp: 'apply_updates'
+    line: apply_updates = yes
+
+- name: Enable and start automatic dnf update service
+  ansible.builtin.service:
+    name: dnf-automatic.timer
+    state: started
+    enabled: true
