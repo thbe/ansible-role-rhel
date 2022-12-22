@@ -18,3 +18,5 @@ galaxy_info:
     - tools
     - deployment
     - rhel
+    - rockylinux
+    - centos

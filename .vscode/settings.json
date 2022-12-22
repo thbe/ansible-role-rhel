@@ -2,6 +2,7 @@
     "cSpell.words": [
         "activationkey",
         "baseos",
+        "centos",
         "codeready",
         "disablerepo",
         "epel",
@@ -32,6 +33,7 @@
         "releasever",
         "rhel",
         "rhsm",
+        "rockylinux",
         "rootvg",
         "rpms",
         "sysconfig",
