@@ -11,3 +11,5 @@
     name: kdump.service
     state: started
     enabled: true
+  when:
+    - ansible_facts['virtualization_type'] != "docker"

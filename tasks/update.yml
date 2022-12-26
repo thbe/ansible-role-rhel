@@ -28,3 +28,5 @@
     name: dnf-automatic.timer
     state: started
     enabled: true
+  when:
+    - ansible_facts['virtualization_type'] != "docker"

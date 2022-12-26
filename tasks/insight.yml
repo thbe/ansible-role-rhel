@@ -15,4 +15,3 @@
     dest: /etc/insights-client/insights-client.conf
     insertafter: "^#core_collect=True"
     line: "core_collect=True"
-  when: not ansible_check_mode

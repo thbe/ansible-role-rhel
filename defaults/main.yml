@@ -1,5 +1,4 @@
 ---
-# defaults file for rhel
 role_directory: /opt/ansible/rhel
 
 net_manage: false
