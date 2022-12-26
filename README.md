@@ -1,17 +1,14 @@
-Ansible Role thbe-rhel
-======================
+# Ansible Role thbe-rhel
 
 [![Ansible Lint](https://github.com/thbe/ansible-role-rhel/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/thbe/ansible-role-rhel/actions/workflows/ansible-lint.yml)[![Molecule](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml/badge.svg)](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml)
 
 This role configures and deploys base settings on an RHEL instance or RHEL clone.
 
-Requirements
-------------
+## Requirements
 
 To unlock the full potential of this role, you need to be registered in the RHN and subscribed to at least a standard RHEL subscription.
 
-Role Variables
---------------
+## Role Variables
 
 * **role_directory** - This variable contains the root path of the directories used by thbe roles (**do not change!**)
 * **net_manage** - Manage local network (default: false)
@@ -38,13 +35,11 @@ Role Variables
 * **rhel_packages_8** - List of standard packages for RHEL 8 only
 * **rhel_packages_rhn** - List of standard packages for RHN only
 
-Dependencies
-------------
+## Dependencies
 
 This role depends on the "thbe.common" role from Ansible Galaxy.
 
-Example Playbook
-----------------
+## Example Playbook
 
 This role can be included in the site.yml like this:
 
@@ -65,12 +60,10 @@ This role can be included in the site.yml like this:
         name: thbe.rhel
 ```
 
-License
--------
+## License
 
 GPL-3.0-only
 
-Author Information
-------------------
+## Author Information
 
 Thomas Bendler - [https://www.thbe.org/](https://www.thbe.org/)
