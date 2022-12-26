@@ -37,7 +37,9 @@ To unlock the full potential of this role, you need to be registered in the RHN 
 
 ## Dependencies
 
-This role depends on the "thbe.common" role from Ansible Galaxy.
+This role depends on:
+
+* thbe.common
 
 ## Example Playbook
 
