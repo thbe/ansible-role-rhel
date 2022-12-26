@@ -37,7 +37,7 @@
       (ansible_facts['distribution_version'] == "8.4") or
       (ansible_facts['distribution_version'] == "8.5")
 
-- name: Remove legacy Ansible packages for RHEL equal or above version 8.6
+- name: Remove legacy Ansible packages for RHEL equal or above version 8.5
   ansible.builtin.dnf:
     name:
       - ansible
