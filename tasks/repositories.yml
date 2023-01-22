@@ -2,9 +2,9 @@
 - name: Enable RHEL 8 repositories
   community.general.rhsm_repository:
     name: "{{ item }}"
+    update_cache: yes
     state: enabled
   loop: "{{ rhel_repos_8 }}"
-  notify: Update dnf cache
   when:
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
@@ -12,9 +12,9 @@
 - name: Enable RHEL 9 repositories
   community.general.rhsm_repository:
     name: "{{ item }}"
+    update_cache: yes
     state: enabled
   loop: "{{ rhel_repos_9 }}"
-  notify: Update dnf cache
   when:
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
@@ -44,8 +44,8 @@
 - name: Activate EPEL repo for EL 8 distributions
   ansible.builtin.dnf:
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    update_cache: yes
     state: present
-  notify: Update dnf cache
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
@@ -63,8 +63,8 @@
 - name: Activate EPEL repo for EL 9 distributions
   ansible.builtin.dnf:
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    update_cache: yes
     state: present
-  notify: Update dnf cache
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
