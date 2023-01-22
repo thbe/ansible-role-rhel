@@ -34,6 +34,7 @@ To unlock the full potential of this role, you need to be registered in the RHN 
 * **rhel_packages_common** - List of standard RHEL packages
 * **rhel_packages_8** - List of standard packages for RHEL 8 only
 * **rhel_packages_rhn** - List of standard packages for RHN only
+* **external_repos_epel** - Enables EPEL repository (default: false)
 
 ## Dependencies
 
@@ -54,12 +55,14 @@ This role can be included in the site.yml like this:
     - community.general
   gather_facts: true
   tasks:
-    - name: Role Common (DevOps preparation)
+    - name: "Include thbe.common"
       ansible.builtin.include_role:
-        name: thbe.common
-    - name: Role RHEL
+        name: "thbe.common"
+    - name: "Include thbe.rhel"
       ansible.builtin.include_role:
-        name: thbe.rhel
+        name: "thbe.rhel"
+      vars:
+        external_repos_epel: true
 ```
 
 ## License
