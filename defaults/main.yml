@@ -56,3 +56,5 @@ rhel_packages_8:
 rhel_packages_rhn:
   - rhc
   - rhc-worker-playbook
+
+epel: false

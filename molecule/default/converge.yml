@@ -11,3 +11,5 @@
     - name: "Include thbe.rhel"
       ansible.builtin.include_role:
         name: "thbe.rhel"
+      vars:
+        epel: true

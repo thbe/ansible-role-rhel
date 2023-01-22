@@ -16,3 +16,52 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
+
+- name: Deploy RPM keys
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ role_directory }}/keys/"
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+    - keys/RPM-GPG-KEY-*
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - epel|bool
+
+- name: Import rpm key for EPEL 8 signed packages
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ role_directory }}/keys/RPM-GPG-KEY-EPEL-8"
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+    - epel|bool
+
+- name: Activate EPEL repo for EL 8 distributions
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    state: present
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+    - epel|bool
+
+- name: Import rpm key for EPEL 9 signed packages
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ role_directory }}/keys/RPM-GPG-KEY-EPEL-9"
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 9
+    - epel|bool
+
+- name: Activate EPEL repo for EL 9 distributions
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    state: present
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 9
+    - epel|bool

@@ -15,10 +15,10 @@
     group: root
     mode: 0750
 
-- name: Create directory for local RPMs
+- name: Create directory for local GPG keys
   ansible.builtin.file:
-    path: "{{ role_directory }}/rpms"
+    path: "{{ role_directory }}/keys"
     state: directory
     owner: root
     group: root
-    mode: 0750
+    mode: 0755

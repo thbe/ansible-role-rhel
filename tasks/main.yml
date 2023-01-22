@@ -8,11 +8,13 @@
   ansible.builtin.import_tasks: hostname.yml
   when:
     - ansible_facts['os_family'] == "RedHat"
+    - net_hostname_primary is defined
 
 - name: Deploy network configuration
   ansible.builtin.import_tasks: network.yml
   when:
     - ansible_facts['os_family'] == "RedHat"
+    - net_manage|bool
 
 - name: Lock RHEL and/ or kernel version
   ansible.builtin.import_tasks: version.yml
