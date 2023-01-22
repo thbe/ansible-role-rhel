@@ -12,4 +12,4 @@
       ansible.builtin.include_role:
         name: "thbe.rhel"
       vars:
-        epel: true
+        external_repos_epel: true

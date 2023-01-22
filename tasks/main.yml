@@ -34,7 +34,7 @@
 - name: Enable base repositories
   ansible.builtin.import_tasks: repositories.yml
   when:
-    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
 
 - name: Deploy Ansible
   ansible.builtin.import_tasks: ansible.yml

@@ -4,6 +4,7 @@
     name: "{{ item }}"
     state: enabled
   loop: "{{ rhel_repos_8 }}"
+  notify: Update dnf cache
   when:
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
@@ -13,6 +14,7 @@
     name: "{{ item }}"
     state: enabled
   loop: "{{ rhel_repos_9 }}"
+  notify: Update dnf cache
   when:
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
@@ -28,7 +30,7 @@
     - keys/RPM-GPG-KEY-*
   when:
     - ansible_facts['os_family'] == "RedHat"
-    - epel|bool
+    - external_repos_epel|bool
 
 - name: Import rpm key for EPEL 8 signed packages
   ansible.builtin.rpm_key:
@@ -37,16 +39,17 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
-    - epel|bool
+    - external_repos_epel|bool
 
 - name: Activate EPEL repo for EL 8 distributions
   ansible.builtin.dnf:
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     state: present
+  notify: Update dnf cache
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
-    - epel|bool
+    - external_repos_epel|bool
 
 - name: Import rpm key for EPEL 9 signed packages
   ansible.builtin.rpm_key:
@@ -55,13 +58,14 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
-    - epel|bool
+    - external_repos_epel|bool
 
 - name: Activate EPEL repo for EL 9 distributions
   ansible.builtin.dnf:
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     state: present
+  notify: Update dnf cache
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
-    - epel|bool
+    - external_repos_epel|bool

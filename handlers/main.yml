@@ -10,3 +10,7 @@
   ansible.builtin.command: firewall-cmd --reload
   when:
     - ansible_facts['virtualization_type'] != "docker"
+
+- name: Update dnf cache
+  ansible.builtin.dnf:
+    update_cache: yes

@@ -57,4 +57,4 @@ rhel_packages_rhn:
   - rhc
   - rhc-worker-playbook
 
-epel: false
+external_repos_epel: false
