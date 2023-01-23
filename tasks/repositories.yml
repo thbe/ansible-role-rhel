@@ -2,7 +2,6 @@
 - name: Enable RHEL 8 repositories
   community.general.rhsm_repository:
     name: "{{ item }}"
-    update_cache: yes
     state: enabled
   loop: "{{ rhel_repos_8 }}"
   when:
@@ -12,7 +11,6 @@
 - name: Enable RHEL 9 repositories
   community.general.rhsm_repository:
     name: "{{ item }}"
-    update_cache: yes
     state: enabled
   loop: "{{ rhel_repos_9 }}"
   when:

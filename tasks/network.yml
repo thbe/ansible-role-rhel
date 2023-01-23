@@ -23,6 +23,7 @@
       - '{{ local_net_route_1 }}'
       - '{{ local_net_route_2 }}'
     method6: 'disabled'
+    addr_gen_mode6: 'eui64'
     state: present
   when:
     - net_manage|bool
@@ -49,6 +50,7 @@
       - '{{ local_net_route_1 }}'
       - '{{ local_net_route_2 }}'
     method6: 'disabled'
+    addr_gen_mode6: 'eui64'
     state: present
   when:
     - net_manage|bool
