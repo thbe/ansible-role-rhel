@@ -22,6 +22,7 @@
     routes4:
       - '{{ local_net_route_1 }}'
       - '{{ local_net_route_2 }}'
+    method6: 'disabled'
     state: present
   when:
     - net_manage|bool
@@ -47,6 +48,7 @@
     routes4:
       - '{{ local_net_route_1 }}'
       - '{{ local_net_route_2 }}'
+    method6: 'disabled'
     state: present
   when:
     - net_manage|bool
