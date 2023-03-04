@@ -27,6 +27,7 @@
   ansible.builtin.import_tasks: subscription.yml
   when:
     - ansible_facts['distribution'] == "RedHat"
+    - rhn_manage|bool
     - rhn_organization_id != "unset"
     - rhn_activation_key != "unset"
     - rhn_pool_id != "unset"

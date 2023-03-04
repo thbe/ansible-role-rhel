@@ -25,6 +25,7 @@ cockpit_packages:
   - cockpit-system
   - subscription-manager-cockpit.noarch
 
+rhn_manage: false
 rhn_organization_id: 'unset'
 rhn_activation_key: 'unset'
 rhn_pool_id: 'unset'
