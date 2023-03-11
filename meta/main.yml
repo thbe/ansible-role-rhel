@@ -19,4 +19,4 @@ galaxy_info:
     - deployment
     - rhel
     - rockylinux
-    - centos
+    - almalinux

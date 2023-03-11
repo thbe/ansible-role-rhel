@@ -5,6 +5,8 @@
     state: enabled
   loop: "{{ rhel_repos_8 }}"
   when:
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
 
@@ -14,6 +16,8 @@
     state: enabled
   loop: "{{ rhel_repos_9 }}"
   when:
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 9
 

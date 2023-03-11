@@ -14,6 +14,7 @@
     state: present
   with_items: "{{ rhel_packages_8 }}"
   when:
+    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version']|int == 8
 
@@ -23,5 +24,6 @@
     state: present
   with_items: "{{ rhel_packages_rhn }}"
   when:
+    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['distribution'] == "RedHat"
     - ansible_facts['distribution_major_version']|int >= 8

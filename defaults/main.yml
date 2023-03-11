@@ -23,7 +23,6 @@ cockpit_packages:
   - cockpit-pcp
   - cockpit-session-recording
   - cockpit-system
-  - subscription-manager-cockpit.noarch
 
 rhn_manage: false
 rhn_organization_id: 'unset'
@@ -44,11 +43,9 @@ rhel_repos_9:
   - codeready-builder-for-rhel-9-x86_64-rpms
 
 rhel_packages_common:
-  - dnf-automatic
   - dnf-data
   - dnf-plugins-core
   - dnf-utils
-  - rhel-system-roles
 
 rhel_packages_8:
   - redhat-lsb-core
