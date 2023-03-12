@@ -1,6 +1,6 @@
 # Ansible Role thbe-rhel
 
-[![Ansible Lint](https://github.com/thbe/ansible-role-rhel/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/thbe/ansible-role-rhel/actions/workflows/ansible-lint.yml)[![Molecule](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml/badge.svg)](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml)
+[![Molecule](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml/badge.svg)](https://github.com/thbe/ansible-role-rhel/actions/workflows/molecule.yml)
 
 This role configures and deploys base settings on an RHEL instance or RHEL clone.
 
