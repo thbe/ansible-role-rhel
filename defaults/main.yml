@@ -43,6 +43,7 @@ rhel_repos_9:
   - codeready-builder-for-rhel-9-x86_64-rpms
 
 rhel_packages_common:
+  - ca-certificates
   - dnf-data
   - dnf-plugins-core
   - dnf-utils
