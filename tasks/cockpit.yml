@@ -10,8 +10,6 @@
     name: cockpit.socket
     state: started
     enabled: true
-  when:
-    - ansible_facts['virtualization_type'] != "docker"
 
 - name: Enable cockpit on local firewall
   ansible.posix.firewalld:
@@ -20,4 +18,5 @@
     state: enabled
   notify: Reload firewalld
   when:
-    - ansible_facts['virtualization_type'] != "docker"
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
