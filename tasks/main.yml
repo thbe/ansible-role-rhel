@@ -39,16 +39,22 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
 
+- name: Deploy RHEL base packages
+  ansible.builtin.import_tasks: packages.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy selinux configuration
+  ansible.builtin.import_tasks: selinux.yml
+
+- name: Deploy firewalld configuration
+  ansible.builtin.import_tasks: firewalld.yml
+
 - name: Deploy Ansible
   ansible.builtin.import_tasks: ansible.yml
   when:
     - (ansible_facts['virtualization_type'] != "container") and
       (ansible_facts['virtualization_type'] != "docker")
-    - ansible_facts['os_family'] == "RedHat"
-
-- name: Deploy RHEL base packages
-  ansible.builtin.import_tasks: packages.yml
-  when:
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Deploy kernel dump service

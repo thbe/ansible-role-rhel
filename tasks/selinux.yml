@@ -1,0 +1,11 @@
+---
+- name: Set SELinux into permissive mode
+  ansible.posix.selinux:
+    policy: targeted
+    state: permissive
+
+- name: Permanently set SELinux into permissive mode
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=permissive

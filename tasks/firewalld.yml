@@ -1,0 +1,42 @@
+---
+- name: Installation of firewalld
+  ansible.builtin.dnf:
+    name:
+      - firewalld
+    state: present
+
+- name: Enable and start firewalld
+  ansible.builtin.service:
+    name: firewalld.service
+    state: started
+    enabled: true
+
+- name: Enable standard service ssh on local firewall
+  ansible.posix.firewalld:
+    service: ssh
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+
+- name: Enable standard service dhcpv6-client on local firewall
+  ansible.posix.firewalld:
+    service: dhcpv6-client
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+
+- name: Enable standard service samba-client on local firewall
+  ansible.posix.firewalld:
+    service: samba-client
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+
+- name: Activate firewalld logging
+  ansible.builtin.lineinfile:
+    dest: /etc/firewalld/firewalld.conf
+    regexp: "^LogDenied="
+    line: "LogDenied=all"
+    create: true
+    mode: 0644
+  notify: Reload firewalld

@@ -9,6 +9,7 @@
         "codeready",
         "containerd",
         "devel",
+        "dhcpv",
         "disablerepo",
         "epel",
         "ethernet",
