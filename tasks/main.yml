@@ -26,6 +26,8 @@
 - name: Activate base RHN subscriptions
   ansible.builtin.import_tasks: subscription.yml
   when:
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
     - ansible_facts['distribution'] == "RedHat"
     - rhn_manage|bool
     - rhn_organization_id != "unset"
@@ -52,25 +54,21 @@
 - name: Deploy kernel dump service
   ansible.builtin.import_tasks: kdump.yml
   when:
-    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Deploy kernel patch service
   ansible.builtin.import_tasks: kpatch.yml
   when:
-    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['distribution'] == "RedHat"
 
 - name: Deploy automatic security patch updates
   ansible.builtin.import_tasks: update.yml
   when:
-    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Deploy Red Hat Insights
   ansible.builtin.import_tasks: insight.yml
   when:
-    - ansible_facts['virtualization_type'] != "container"
     - ansible_facts['distribution'] == "RedHat"
 
 - name: Deploy cockpit management service
