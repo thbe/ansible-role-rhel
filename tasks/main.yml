@@ -56,6 +56,7 @@
     - (ansible_facts['virtualization_type'] != "container") and
       (ansible_facts['virtualization_type'] != "docker")
     - ansible_facts['os_family'] == "RedHat"
+    - ansible_manage|bool
 
 - name: Deploy kernel dump service
   ansible.builtin.import_tasks: kdump.yml

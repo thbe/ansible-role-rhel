@@ -24,6 +24,8 @@ cockpit_packages:
   - cockpit-session-recording
   - cockpit-system
 
+ansible_manage: false
+
 rhn_manage: false
 rhn_organization_id: 'unset'
 rhn_activation_key: 'unset'

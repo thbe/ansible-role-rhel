@@ -24,6 +24,7 @@ To unlock the full potential of this role, you need to be registered in the RHN 
 * **net_gw** - Standard gateway (default: not defined)
 * **net_packages:** - List of packages required for NetworkManager
 * **cockpit_packages** - List of packages required for Cockpit
+* **ansible_manage** - Manage Ansible deployment (default: false)
 * **rhn_manage** - Manage RHN subscriptions (default: false)
 * **rhn_organization_id** - RHN organization ID (default: 'unset')
 * **rhn_activation_key** - RHN activation key (default: 'unset')
