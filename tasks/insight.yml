@@ -27,3 +27,16 @@
     dest: /etc/insights-client/insights-client.conf
     insertafter: "^#core_collect=True"
     line: "core_collect=True"
+
+- name: Check if /etc/insights-client/malware-detection-config.yml exists
+  ansible.builtin.stat:
+    path: /etc/insights-client/malware-detection-config.yml
+  register: stat_result_yara
+
+- name: Ensure malware scan is activated
+  ansible.builtin.lineinfile:
+    path: /etc/insights-client/malware-detection-config.yml
+    regexp: '^test_scan: '
+    line: "test_scan: false"
+  when:
+    - stat_result_yara.stat.exists
