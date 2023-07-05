@@ -22,7 +22,7 @@
     pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
-      role: "Red Hat Enterprise Linux Server"
+      role: "RHEL Server"
       service_level_agreement: "Standard"
       sync: true
   when:
@@ -37,7 +37,7 @@
     pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
-      role: "Not Specified"
+      role: "RHEL Server"
       service_level_agreement: "Standard"
       sync: true
   when:
@@ -52,7 +52,7 @@
     pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
-      role: "Red Hat Enterprise Linux Server"
+      role: "RHEL Server"
       service_level_agreement: "Premium"
       sync: true
   when:
