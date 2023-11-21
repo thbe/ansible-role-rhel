@@ -10,8 +10,6 @@
     name: rpcbind.service
     state: started
     enabled: true
-  when:
-    - nfs_server|bool
 
 - name: Enable and start nfs-server service
   ansible.builtin.service:
