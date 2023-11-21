@@ -1,0 +1,43 @@
+---
+- name: Deploy NFS packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ nfs_packages }}"
+
+- name: Enable and start rpcbind service
+  ansible.builtin.service:
+    name: rpcbind.service
+    state: started
+    enabled: true
+  when:
+    - nfs_server|bool
+
+- name: Enable and start nfs-server service
+  ansible.builtin.service:
+    name: nfs-server.service
+    state: started
+    enabled: true
+  when:
+    - nfs_server|bool
+
+- name: Enable nfs on local firewall
+  ansible.posix.firewalld:
+    service: nfs
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+
+- name: Enable rpc-bind on local firewall
+  ansible.posix.firewalld:
+    service: rpc-bind
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+
+- name: Enable mountd on local firewall
+  ansible.posix.firewalld:
+    service: mountd
+    permanent: true
+    state: enabled
+  notify: Reload firewalld

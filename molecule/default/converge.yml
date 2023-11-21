@@ -10,3 +10,4 @@
         name: "thbe.rhel"
       vars:
         external_repos_epel: true
+        nfs_manage: true

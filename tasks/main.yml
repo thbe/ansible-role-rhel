@@ -82,3 +82,9 @@
   ansible.builtin.import_tasks: cockpit.yml
   when:
     - ansible_facts['os_family'] == "RedHat"
+
+- name: Deploy NFS
+  ansible.builtin.import_tasks: nfs.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - nfs_manage|bool

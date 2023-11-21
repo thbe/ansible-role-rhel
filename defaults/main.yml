@@ -24,6 +24,12 @@ cockpit_packages:
   - cockpit-session-recording
   - cockpit-system
 
+nfs_manage: false
+nfs_packages:
+  - rpcbind
+  - nfs-utils
+nfs_server: false
+
 ansible_manage: false
 
 rhn_manage: false
