@@ -44,12 +44,6 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
 
-- name: Deploy selinux configuration
-  ansible.builtin.import_tasks: selinux.yml
-
-- name: Deploy firewalld configuration
-  ansible.builtin.import_tasks: firewalld.yml
-
 - name: Deploy Ansible
   ansible.builtin.import_tasks: ansible.yml
   when:
@@ -88,3 +82,9 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
     - nfs_manage|bool
+
+- name: Deploy selinux configuration
+  ansible.builtin.import_tasks: selinux.yml
+
+- name: Deploy firewalld configuration
+  ansible.builtin.import_tasks: firewalld.yml
