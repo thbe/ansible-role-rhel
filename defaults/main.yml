@@ -16,6 +16,8 @@ net_packages:
 local_net_route_1: '{{ " ".join((net_route_1, net_gw)) }}'
 local_net_route_2: '{{ " ".join((net_route_2, net_gw)) }}'
 
+fw_manage: true
+
 cockpit_packages:
   - cockpit
   - cockpit-ws

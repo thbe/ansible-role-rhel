@@ -25,6 +25,8 @@
     permanent: true
     state: enabled
   notify: Reload firewalld
+  when:
+    - fw_manage|bool
 
 - name: Enable rpc-bind on local firewall
   ansible.posix.firewalld:
@@ -32,6 +34,8 @@
     permanent: true
     state: enabled
   notify: Reload firewalld
+  when:
+    - fw_manage|bool
 
 - name: Enable mountd on local firewall
   ansible.posix.firewalld:
@@ -39,3 +43,5 @@
     permanent: true
     state: enabled
   notify: Reload firewalld
+  when:
+    - fw_manage|bool

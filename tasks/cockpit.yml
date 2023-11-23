@@ -17,3 +17,5 @@
     permanent: true
     state: enabled
   notify: Reload firewalld
+  when:
+    - fw_manage|bool

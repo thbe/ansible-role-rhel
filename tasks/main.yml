@@ -72,11 +72,6 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
 
-- name: Deploy cockpit management service
-  ansible.builtin.import_tasks: cockpit.yml
-  when:
-    - ansible_facts['os_family'] == "RedHat"
-
 - name: Deploy NFS
   ansible.builtin.import_tasks: nfs.yml
   when:
@@ -88,3 +83,10 @@
 
 - name: Deploy firewalld configuration
   ansible.builtin.import_tasks: firewalld.yml
+  when:
+    - fw_manage|bool
+
+- name: Deploy cockpit management service
+  ansible.builtin.import_tasks: cockpit.yml
+  when:
+    - ansible_facts['os_family'] == "RedHat"

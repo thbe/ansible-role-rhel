@@ -23,6 +23,7 @@ To unlock the full potential of this role, you need to be registered in the RHN 
 * **net_route_2** - Additional route 2 (default: not defined)
 * **net_gw** - Standard gateway (default: not defined)
 * **net_packages:** - List of packages required for NetworkManager
+* **fw_manage:** - Manage local firewall (default: true)
 * **cockpit_packages** - List of packages required for Cockpit
 * **nfs_manage:** - Manage local NFS (default: false)
 * **nfs_packages:** - List of packages required for NFS
