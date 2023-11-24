@@ -32,7 +32,6 @@ To unlock the full potential of this role, you need to be registered in the RHN 
 * **rhn_manage** - Manage RHN subscriptions (default: false)
 * **rhn_organization_id** - RHN organization ID (default: 'unset')
 * **rhn_activation_key** - RHN activation key (default: 'unset')
-* **rhn_pool_id** - RHN pool ID (default: 'unset')
 * **rhel_release_version** - Locked RHEL release version (default: 'latest')
 * **rhel_kernel_version** - Locked RHEL kernel version (default: 'latest')
 * **rhel_repos_8** - List of standard RHEL 8 repositories
