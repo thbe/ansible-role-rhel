@@ -37,7 +37,6 @@ ansible_manage: false
 rhn_manage: false
 rhn_organization_id: 'unset'
 rhn_activation_key: 'unset'
-rhn_pool_id: 'unset'
 
 rhel_release_version: 'latest'
 rhel_kernel_version: 'latest'
