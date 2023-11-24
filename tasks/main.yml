@@ -32,7 +32,6 @@
     - rhn_manage|bool
     - rhn_organization_id != "unset"
     - rhn_activation_key != "unset"
-    - rhn_pool_id != "unset"
 
 - name: Enable base repositories
   ansible.builtin.import_tasks: repositories.yml
