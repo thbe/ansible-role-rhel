@@ -11,3 +11,11 @@
       vars:
         external_repos_epel: true
         nfs_manage: true
+        # The minimal AlmaLinux test container does not ship the optional
+        # cockpit-pcp / cockpit-session-recording packages, so restrict the
+        # set to the subset available in the base repositories for CI.
+        cockpit_packages:
+          - cockpit
+          - cockpit-ws
+          - cockpit-bridge
+          - cockpit-system

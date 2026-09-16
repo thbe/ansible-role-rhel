@@ -88,4 +88,5 @@
 - name: Deploy cockpit management service
   ansible.builtin.import_tasks: cockpit.yml
   when:
+    - cockpit_manage|bool
     - ansible_facts['os_family'] == "RedHat"
