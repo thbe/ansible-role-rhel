@@ -38,5 +38,5 @@
     regexp: "^LogDenied="
     line: "LogDenied=all"
     create: true
-    mode: 0644
+    mode: "0644"
   notify: Reload firewalld
